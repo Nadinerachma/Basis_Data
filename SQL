@@ -1,0 +1,381 @@
+Microsoft Windows [Version 10.0.26100.3194]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\acer>CD C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+ERROR 2002 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+
+C:\xampp\mysql\bin>
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+ERROR 2002 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DATABASE' at line 1
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| perpustakaan       |
+| phpmyadmin         |
+| spiderman          |
+| test               |
++--------------------+
+8 rows in set (0.021 sec)
+
+MariaDB [(none)]> CREATE DATABASE PERPUSTAKAAN;
+ERROR 1007 (HY000): Can't create database 'perpustakaan'; database exists
+MariaDB [(none)]> CREATE DATABASE PERPUSTAKAAN
+    -> ;
+ERROR 1007 (HY000): Can't create database 'perpustakaan'; database exists
+MariaDB [(none)]> CREATE DATABASE PERPUSTAKAAN
+    -> ;
+ERROR 1007 (HY000): Can't create database 'perpustakaan'; database exists
+MariaDB [(none)]> CREATE DATABASE SEPERPUSTAKAAN
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE IF NOT EXISTS SEPERPUS;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| perpustakaan       |
+| phpmyadmin         |
+| seperpus           |
+| seperpustakaan     |
+| spiderman          |
+| test               |
++--------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [(none)]> USE SEPERPUSTAKAAN;
+Database changed
+MariaDB [SEPERPUSTAKAAN]> CREATE TABLE mahasiswa (
+    -> npm char(5) NOT NULL PRIMARY KEY,
+    -> nama varchar(20) NOT NULL,
+    -> tempat_lahir DATE NOT NULL,
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    -> SHOW DATABASE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SHOW DATABASE' at line 11
+MariaDB [SEPERPUSTAKAAN]>
+MariaDB [SEPERPUSTAKAAN]> CREATE TABLE mahasiswa (
+    -> npm char(5) NOT NULL PRIMARY KEY,
+    -> nama varchar(20) NOT NULL,
+    -> tempat_lahir varchar(20) NOT NULL,
+    -> tanggal_lahir DATE NOT NULL,
+    -> no_hp varchar(25)
+    -> );
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [SEPERPUSTAKAAN]> show tables;
++--------------------------+
+| Tables_in_seperpustakaan |
++--------------------------+
+| mahasiswa                |
++--------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [SEPERPUSTAKAAN]> DESC mahasiswa;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| npm           | char(5)     | NO   | PRI | NULL    |       |
+| nama          | varchar(20) | NO   |     | NULL    |       |
+| tempat_lahir  | varchar(20) | NO   |     | NULL    |       |
+| tanggal_lahir | date        | NO   |     | NULL    |       |
+| no_hp         | varchar(25) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.023 sec)
+
+MariaDB [SEPERPUSTAKAAN]> ALTER TABLE MAHASISWA ADD jenis_kelamin enum('L', 'P');
+Query OK, 0 rows affected (0.008 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [SEPERPUSTAKAAN]> desc mahasiswa
+    -> ;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| npm           | char(5)       | NO   | PRI | NULL    |       |
+| nama          | varchar(20)   | NO   |     | NULL    |       |
+| tempat_lahir  | varchar(20)   | NO   |     | NULL    |       |
+| tanggal_lahir | date          | NO   |     | NULL    |       |
+| no_hp         | varchar(25)   | YES  |     | NULL    |       |
+| jenis_kelamin | enum('L','P') | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+6 rows in set (0.023 sec)
+
+MariaDB [SEPERPUSTAKAAN]> ALTER TABLE MAHASISWA MODIFY COLUMN nama VARCHAR(5);
+Query OK, 0 rows affected (0.064 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [SEPERPUSTAKAAN]> DESC mahasiswa;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| npm           | char(5)       | NO   | PRI | NULL    |       |
+| nama          | varchar(5)    | YES  |     | NULL    |       |
+| tempat_lahir  | varchar(20)   | NO   |     | NULL    |       |
+| tanggal_lahir | date          | NO   |     | NULL    |       |
+| no_hp         | varchar(25)   | YES  |     | NULL    |       |
+| jenis_kelamin | enum('L','P') | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+6 rows in set (0.014 sec)
+
+MariaDB [SEPERPUSTAKAAN]> ALTER TABLE MAHASISWA DROP COLUMN no_hp;
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [SEPERPUSTAKAAN]> DESC mahasiswa;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| npm           | char(5)       | NO   | PRI | NULL    |       |
+| nama          | varchar(5)    | YES  |     | NULL    |       |
+| tempat_lahir  | varchar(20)   | NO   |     | NULL    |       |
+| tanggal_lahir | date          | NO   |     | NULL    |       |
+| jenis_kelamin | enum('L','P') | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+5 rows in set (0.018 sec)
+
+MariaDB [SEPERPUSTAKAAN]> DROP TABLE mahasiswa;
+Query OK, 0 rows affected (0.061 sec)
+
+MariaDB [SEPERPUSTAKAAN]> SHOW TABLES;
+Empty set (0.001 sec)
+
+MariaDB [SEPERPUSTAKAAN]> DROP DATABASE SEPERPUSTAKAAN;
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| perpustakaan       |
+| phpmyadmin         |
+| seperpus           |
+| spiderman          |
+| test               |
++--------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+C:\xampp\mysql\bin> SHOW DATABASES;
+'SHOW' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin> mysqldump -u username -p username -p kampus_basis_data>lokasi_simpan/kampus_file_backup.sql
+The system cannot find the path specified.
+
+C:\xampp\mysql\bin> SHOW DATABASES;
+'SHOW' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin> CREATE DATABASE KAMPUS;
+'CREATE' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin> CREATE DATABASES KAMPUS
+'CREATE' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin> CREATE DATABASE KAMPUS
+'CREATE' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin> back
+'back' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DATABASE' at line 1
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| perpustakaan       |
+| phpmyadmin         |
+| seperpus           |
+| spiderman          |
+| test               |
++--------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE KAMPUS
+    -> CREATE DATABASE KAMPUS
+    -> )
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CREATE DATABASE KAMPUS
+)' at line 2
+MariaDB [(none)]> CREATE DATABASE KAMPUS
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE IF NOT EXISTS SEKAMPUS;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| kampus             |
+| mysql              |
+| performance_schema |
+| perpustakaan       |
+| phpmyadmin         |
+| sekampus           |
+| seperpus           |
+| spiderman          |
+| test               |
++--------------------+
+11 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+C:\xampp\mysql\bin>mysqldump -u root -p kampus > D:\kampus_backup.sql
+Enter password:
+
+C:\xampp\mysql\bin>mysql -u root -p perpus < D:\seperpustakaan.sql
+The system cannot find the file specified.
+
+C:\xampp\mysql\bin>mysql -u root -p perpus < D:\seperpustakaan.sql
+The system cannot find the file specified.
+
+C:\xampp\mysql\bin> CREATE DATABASE PERPUS
+'CREATE' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE PERPUS
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| kampus             |
+| mysql              |
+| performance_schema |
+| perpus             |
+| perpustakaan       |
+| phpmyadmin         |
+| sekampus           |
+| seperpus           |
+| spiderman          |
+| test               |
++--------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+C:\xampp\mysql\bin>mysql -u root -p sekampus < D:\seperpustakaan.sql
+The system cannot find the file specified.
+
+C:\xampp\mysql\bin>mysqldump -u root -p kampus > D:\kampus_backup.sql
+Enter password:
+
+C:\xampp\mysql\bin>mysql -u root -p sekampus < D:\seperpustakaan.sql
+The system cannot find the file specified.
+
+C:\xampp\mysql\bin>mysql -u root -p sekampus < D:\seperpus.sql
+The system cannot find the file specified.
+
+C:\xampp\mysql\bin>mysqldump -u root -p sekampus > D:\sekampus_backup.sql
+Enter password:
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 14
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| hero               |
+| information_schema |
+| kampus             |
+| mysql              |
+| performance_schema |
+| perpus             |
+| perpustakaan       |
+| phpmyadmin         |
+| sekampus           |
+| seperpus           |
+| spiderman          |
+| test               |
++--------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [(none)]>
